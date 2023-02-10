@@ -1,0 +1,90 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #232323;
+}
+
+h1 {
+    background-color: #444444;
+    color: white;
+    text-align: center;
+    padding: 0.4em;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: end;
+    padding: 0.5em 5vw;
+}
+nav label {
+    color: white;
+    font-weight: 600;
+}
+nav select {
+    background-color: white;
+    width: 6em;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 2em 10vw;
+}
+.img {
+    position: relative;
+    background-color: #666666;
+    width: 18em;
+    height: 18em;
+    border-radius: 1em;
+    border: solid;
+}
+.img p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    color: white;
+    font-size: 8em;
+    font-weight: 600;
+}
+
+.jokenpo {
+    display: flex;
+    justify-content: space-around;
+    padding: 1em;
+}
+.jokenpo button {
+    font-size: 2.5em;
+    padding: 0.5em 1em;
+    border-radius: 0.5em;
+}
+.jokenpo button:hover {
+    background-color: #dedede;
+}
+
+@media screen and (max-width: 500px) {
+    main {
+        flex-direction: column;
+        align-items: center;
+        gap: 2em;
+    }
+    .img {
+        width: 14em;
+        height: 14em;
+    }
+    .img p {
+        font-size: 5em;
+    }
+    
+    .jokenpo button {
+      font-size: 1em;
+      padding: 0.3em 0.6em;
+      border-radius: 0.3em;
+  }
+}
