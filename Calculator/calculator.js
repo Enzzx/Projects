@@ -1,7 +1,8 @@
-let operate = 0
-let n1 = 0
-let n2 = 0
-  
+let operate
+let n1 = " "
+let n2 = " "
+
+// - - SELECIONANDO ELEMENTOS - -
 const sumButton = document.querySelector("#sum")
 const subButton = document.querySelector("#sub")
 const multButton = document.querySelector("#mult")
@@ -11,6 +12,9 @@ const clearButton = document.querySelector("#clear")
 const numberButtons = document.querySelectorAll("[data-number]")
 let console = document.querySelector("#console");
 
+// - - - EVENTOS - - -
+clearButton.addEventListener("click", clear)
+resultButton.addEventListener("click", result)
 sumButton.addEventListener("click", sum)
 subButton.addEventListener("click", sub)
 multButton.addEventListener("click", mult)
@@ -19,7 +23,7 @@ numberButtons.forEach((button) => button.addEventListener("click", () => addNumb
 )
 
   
-
+// - - - RESULTADO - - -
 let operators = {
 	sum: "+",
 	sub: "-",
@@ -29,63 +33,77 @@ let operators = {
 
 function result() {
 	if (operate == operators.sum) {
-		n1 = n1+n2
-    return n1
-		console.log(n1)
+		n1 = Number(n1) + Number(n2)
 	} else if (operate == operators.sub) {
-		n1 = n1-n2
-    return n1
-		console.log(n1)
+		n1 = Number(n1) - Number(n2)
 	} else if (operate == operators.mult) {
-		n1 = n1*n2
-    return n1
-		console.log(n1)
+		n1 = Number(n1) * Number(n2)
 	} else if (operate == operators.div) {
-		n1 = n1/n2
-    return n1
-		console.log(n1)
+		n1 = Number(n1) / Number(n2)
 	}
-	console.textContent = `${n1} ${operate} ${n2}`
+	operate = undefined
+	n2 = 0
+	console.textContent = `${n1}`
+	display()
 }
 
 // - - - ESCOLHER O OPERADOR - - -
 function sum() {
-	if (operate !== 0) {
+	if (operate !== undefined) {
 		result()
 	}
 	operate = "+"
-	console.textContent = `${n1} ${operate} ${n2}`
+	console.textContent = `${n1} ${operate}`
+	display()
 }
 function sub() {
-	if (operate !== 0) {
+	if (operate !== undefined) {
 		result()
 	}
 	operate = "-"
-	console.textContent = `${n1} ${operate} ${n2}`
+	console.textContent = `${n1} ${operate}`
+	display()
 }
 function mult() {
-	if (operate !== 0) {
+	if (operate !== undefined) {
 		result()
 	}
 	operate = "*"
-	console.textContent = `${n1} ${operate} ${n2}`
+	console.textContent = `${n1} ${operate}`
+	display()
 }
 function div() {
-	if (operate !== 0) {
+	if (operate !== undefined) {
 		result()
 	}
 	operate = "/"
-	console.textContent = `${n1} ${operate} ${n2}`
+	console.textContent = `${n1} ${operate}`
+	display()
 }
 function clear() {
-	n1 = 5
-	n2 = 5
-	operate = 0
+	operate = undefined
+	n1 = " "
+	n2 = " "
+	display()
+	console.textContent = `${n1}`
 }
 
 function addNumber (number) {
-	n1 += number
+	if (operate == undefined) {
+  	n1 += number
+    console.textContent = `${n1}`
+  } else {
+		n2 += number
+    console.textContent = `${n1} ${operate} ${n2}`
+	}
 }
 
-
-// criar um forEach para os botões de 1-9, e um if statement onde se o 'operate' já tiver um valor, o número do botão vai para 'n2', se não, vai para 'n1' (lembrar de fazer o operate zerar semprw q usar um botão de operador)
+// - - - DISPLAY - - -
+function display() {
+	if (n1 === 0) {
+		n1 = " "
+	}
+	if (n2 === 0) {
+		n2 = " "
+	}
+}
