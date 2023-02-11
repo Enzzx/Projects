@@ -7,6 +7,7 @@ const sumButton = document.querySelector("#sum")
 const subButton = document.querySelector("#sub")
 const multButton = document.querySelector("#mult")
 const divButton = document.querySelector("#div")
+const remButton = document.querySelector("#rem")
 const resultButton = document.querySelector("#result")
 const clearButton = document.querySelector("#clear")
 const numberButtons = document.querySelectorAll("[data-number]")
@@ -19,6 +20,7 @@ sumButton.addEventListener("click", sum)
 subButton.addEventListener("click", sub)
 multButton.addEventListener("click", mult)
 divButton.addEventListener("click", div)
+remButton.addEventListener("click", rem)
 numberButtons.forEach((button) => button.addEventListener("click", () => addNumber(button.textContent))
 )
 
@@ -28,7 +30,8 @@ let operators = {
 	sum: "+",
 	sub: "-",
 	mult: "*",
-	div: "/"
+	div: "/",
+	rem: "%"
 }
 
 function result() {
@@ -40,6 +43,8 @@ function result() {
 		n1 = Number(n1) * Number(n2)
 	} else if (operate == operators.div) {
 		n1 = Number(n1) / Number(n2)
+	} else if (operate == operators.rem) {
+		n1 = Number(n1) % Number(n2)
 	}
 	operate = undefined
 	n2 = 0
@@ -77,6 +82,14 @@ function div() {
 		result()
 	}
 	operate = "/"
+	console.textContent = `${n1} ${operate}`
+	display()
+}
+function rem() {
+	if (operate !== undefined) {
+		result()
+	}
+	operate = "%"
 	console.textContent = `${n1} ${operate}`
 	display()
 }
