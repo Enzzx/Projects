@@ -10,4 +10,4 @@
 </ul>
 <hr>
 <h2><a href="https://github.com/Enzzx/Projects/tree/main/Jokenpo" target="self">Jokenpo game</a></h2>
-<p>The game took five days to be done, for being a simple game it has few commands. In the right top of the page you can choice play a where the winner is decided after 7 wins, to choice your hand you only need to click in one of the buttons and the oponent (computer) choice will be randomly made, remembering that you is the green side and the computer the red side</p>
+<p>The game took five days to be done, for being a simple game it has few commands. In the right top of the page you can choice play where the winner is decided after 3/5/7 or 9 wins, to choice your hand you only need to click in one of the buttons and the oponent (computer) choice will be randomly made, remembering that you is the green side and the computer the red side</p>
