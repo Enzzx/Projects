@@ -1,16 +1,19 @@
+// - - - SELECIONANDO ELEMENTOS - - -
 let me = 0
 let npc = 0
-
 let myN = document.querySelector(".my_n")
 let npcN = document.querySelector(".npc_n")
-
+let selectMdx = document.querySelector("#mdv")
+let mdx = selectMdx.options[selectMdx.selectedIndex].value
 const leftImg = document.querySelector("#img-left")
 const rightImg = document.querySelector("#img-right")
 let yourChoice
 const jokenpo = ["rock", "scissor", "paper"]
-
 const buttons = document.querySelector(".jokenpo")
+
+// - - - EVENTOS - - -
 buttons.addEventListener("click", buttonCheck)
+selectMdx.addEventListener("change", updateMdv)
 
 // - - - SELECIONAR BOTÃO - - -
 function buttonCheck (event) {
@@ -25,14 +28,10 @@ function buttonCheck (event) {
 }
 
 // - - - MELHOR DE - - -
-let selectMdx = document.querySelector("#mdv")
-let mdx = selectMdx.options[selectMdx.selectedIndex].value
 console.log(mdx)
-selectMdx.addEventListener("change", updateMdv)
-
 function updateMdv () {
 	mdx = selectMdx.options[selectMdx.selectedIndex].value
-console.log(`melhor de ${mdx}`)
+	console.log(`melhor de ${mdx}`)
 	me = 0
 	npc = 0
 }
