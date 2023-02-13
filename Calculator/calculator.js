@@ -52,7 +52,6 @@ function result() {
 	}
 	operate = undefined
   n1 = n1.toFixed(1)
-  // procurar um elemento js para números não reais
 	n2 = 0
 	console.textContent = `${n1}`
 	display()
@@ -118,7 +117,16 @@ function clear() {
 }
 
 function back() {
-	console = console.textContent.substring(0,console.length-1)
+	if (operate == undefined && n2 == " ") {
+		n1 = n1.substring(0, n1.length -1)
+		console.textContent = `${n1}`
+	} else if (operate !== undefined && n2 == " ") {
+		operate = operate.substring(0, operate.length -1)
+		console.textContent = `${n1} ${operate}`
+	} else {
+		n2 = n2.substring(0, n2.length -1)
+		console.textContent = `${n1} ${operate} ${n2}`
+	}
 }
 
 function addNumber (number) {
