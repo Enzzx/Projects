@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Websocket</title>
+    <style>
+    * {
+    	margin: 0;
+    	padding: 0;
+    	box-sizing: border-box;
+    }
+    body {
+    	width: 100vw;
+    	height: 100vh;
+    }
+    
+    #board {
+    	display: grid;
+    	grid-template-columns: repeat(8, 30px);
+    	grid-template-rows: repeat(8, 30px);
+    	margin: auto;
+    }
+    .pixel {
+    	background-color: white;
+    	width: 30px;
+    	height: 30px;
+    	border: solid 1px;
+    }
+    </style>
+</head>
+<body>
+	<article id="board"></article>
+    <script>
+        const board = document.querySelector("#board")
+        const matriz = []
+        let color = "red"
+        
+        for (i=0; i < 8; i++) {
+        	const row = []
+        	for (j=0; j < 8; j++) {
+        		const square = document.createElement("div")
+        		square.className = "pixel"
+        		row.push(square)
+        		board.appendChild(square)
+        	}
+        	matriz.push(row)
+        }
+        
+        const squares = document.querySelectorAll(".pixel")
+        squares.forEach(square => {
+        	square.addEventListener('click', () => {
+        		console.log('clicado')
+        		if (square.style.backgroundColor != color) {
+        			square.style.backgroundColor = color
+        		} else {
+        			square.style.backgroundColor = "white"
+        		}
+        	})
+        })
+    </script>
+</body>
+  </html>
