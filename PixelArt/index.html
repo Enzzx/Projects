@@ -1,63 +1,124 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pixel Websocket</title>
+    <title>Pixel art</title>
     <style>
-    * {
-    	margin: 0;
-    	padding: 0;
-    	box-sizing: border-box;
-    }
-    body {
-    	width: 100vw;
-    	height: 100vh;
-    }
-    
-    #board {
-    	display: grid;
-    	grid-template-columns: repeat(8, 30px);
-    	grid-template-rows: repeat(8, 30px);
-    	margin: auto;
-    }
-    .pixel {
-    	background-color: white;
-    	width: 30px;
-    	height: 30px;
-    	border: solid 1px;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #f2f2f2;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #box {
+            display: block;
+            width: fit-content;
+            background: lightblue;
+            margin: auto;
+        }
+
+        #board {
+            display: grid;
+            grid-template-rows: repeat(8, 30px);
+            grid-template-columns: repeat(8, 30px);
+        }
+
+        .pixel {
+            background: white;
+            width: 30px;
+            height: 30px;
+            border: solid 1px;
+        }
+
+        #colors {
+            width: fit-content;
+            margin: 1em auto;
+        }
+        .color {
+            width: 40px;
+            height: 40px;
+            border: none;
+            cursor: pointer;
+        }
+        .color::-webkit-color-swatch {
+            border-radius: 3px;
+            border: none;
+        }
     </style>
 </head>
+
 <body>
-	<article id="board"></article>
+    <h1>Pixel art</h1>
+    <section id="box">
+        <div id="board"></div>
+    </section>
+    <section id="colors">
+        <input type="color" name="color" value="#ff0000" class="color">
+        <input type="color" name="color" value="#00ff00" class="color">
+        <input type="color" name="color" value="#0000ff" class="color">
+        <input type="color" name="color" value="#ffff00" class="color"><br>
+        <input type="color" name="color" value="#ffa500" class="color">
+        <input type="color" name="color" value="#a020f0" class="color">
+        <input type="color" name="color" value="#8b4513" class="color">
+        <input type="color" name="cgColor" class="color">
+    </section>
+
     <script>
         const board = document.querySelector("#board")
-        const matriz = []
-        let color = "red"
-        
-        for (i=0; i < 8; i++) {
-        	const row = []
-        	for (j=0; j < 8; j++) {
-        		const square = document.createElement("div")
-        		square.className = "pixel"
-        		row.push(square)
-        		board.appendChild(square)
-        	}
-        	matriz.push(row)
+        const matrix = []
+        const changeColor = document.querySelectorAll(".color")
+        let color = '#ff0000'
+
+        changeColor.forEach(colorBox => {
+            colorBox.addEventListener('click', (e) => {
+                if (colorBox.name == 'color') {
+                    e.preventDefault()
+                    console.log('cor default')
+                }
+                color = colorBox.value
+                console.log(color)
+            })
+        })
+
+        for (i = 1; i < 9; i++) {
+            const column = []
+            matrix.push(column)
+            for (j = 1; j < 9; j++) {
+                const pixel = document.createElement("div")
+                pixel.dataset.row = i
+                pixel.dataset.column = j
+                pixel.classList = 'pixel'
+                board.appendChild(pixel)
+                column.push(pixel)
+            }
         }
-        
-        const squares = document.querySelectorAll(".pixel")
-        squares.forEach(square => {
-        	square.addEventListener('click', () => {
-        		console.log('clicado')
-        		if (square.style.backgroundColor != color) {
-        			square.style.backgroundColor = color
-        		} else {
-        			square.style.backgroundColor = "white"
-        		}
-        	})
+
+        const pixels = document.querySelectorAll(".pixel")
+        pixels.forEach(pixel => {
+            pixel.addEventListener('click', () => {
+                const row = pixel.dataset.row
+                const clm = pixel.dataset.column
+                console.log(row, clm)
+
+                const rgb2hex = (rgb) => rgb == '' || rgb == 'white' ? '#ffffff' : `#${rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/).slice(1).map(n => parseInt(n, 10).toString(16).padStart(2, '0')).join('')}`
+
+                if (rgb2hex(pixel.style.background) == color) {
+                    pixel.style.background = 'white'
+                } else {
+                    pixel.style.background = color
+                }
+            })
         })
     </script>
 </body>
-  </html>
+
+</html>
